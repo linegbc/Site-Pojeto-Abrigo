@@ -1,60 +1,259 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
-<head> <!-- Parte invisível -->
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Gov.br</title>
+    <title>Cadastro - Sistema de Apoio e Abrigos</title>
     <link rel="stylesheet" href="CSS/cadastro.css"/>
-    <link rel="icon" type="image/png" sizes="48x48" href="./Imagem/icon.gov.png">
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 </head>
 
 <body>
 
-    <!-- Cabeçalho -->
-    <header>
-        <img src="https://sso.acesso.gov.br/assets/govbr/img/govbr.png" alt="Logo Gov.br">
+    <!-- CABEÇALHO -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>Sistema de Abrigos - Recife</span>
+                </div>
+
+                <button class="btn-back">Voltar</button>
+            </div>
+        </div>
     </header>
 
-    <!-- Conteúdo -->
-    <div class="container">
+    <!-- PROGRESSO -->
+    <div class="progress-container">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="progress-step active">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Dados</span>
+                </div>
 
-        <!-- Imagem -->
-        <div class="imagem">
-            <img src="https://sso.acesso.gov.br/assets/govbr/img/conta_govbr_v2.jpg" alt="Imagem Gov.br">
+                <div class="progress-line"></div>
+
+                <div class="progress-step active">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Familiares</span>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step active">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Abrigo</span>
+                </div>
+            </div>
         </div>
-
-        <!-- Login -->
-        <div class="card">
-
-            <h2>Identifique-se</h2>
-
-            <p>Digite seu CPF para acessar ou criar sua conta gov.br</p>
-
-            <form>
-
-                <label for="cpf">CPF</label>
-
-                <input type="text"
-                    id="cpf"
-                    placeholder="Digite seu CPF"
-                    aria-invalid="false">
-
-                <button href="senha.html" type="submit">Continuar</button>
-
-            </form>
-
-        </div>
-
     </div>
+
+    <!-- MEIO -->
+    <main class="main-content">
+        <div class="container">
+            <div class="cadastro-grid">
+
+                <!-- PARTE DA ESQUERDA -->
+                <div>
+
+                    <!-- TITULAR -->
+                    <section class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Dados do Titular</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="info-display">
+                                <div class="info-item">
+                                    <label>Nome Completo</label>
+                                    <p>Maria da Silva Santos</p>
+                                </div>
+
+                                <div class="info-row">
+                                    <div class="info-item">
+                                        <label>CPF</label>
+                                        <p>123.456.789-00</p>
+                                    </div>
+
+                                    <div class="info-item">
+                                        <label>Faixa Etária</label>
+                                        <p>31-49 anos</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <label>Telefone</label>
+                                    <p>(81) 98765-4321</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PAINEL DE ENDEREÇO -->
+                    <section class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Endereço Atual</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <form>
+                                <!-- BAIRRO E CIDADE -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Bairro</label>
+                                        <input type="text" placeholder="Digite seu bairro">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Cidade</label>
+                                        <input type="text" placeholder="Digite sua cidade">
+                                    </div>
+                                </div>
+
+                                <!-- CEP E NÚMERO -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>CEP</label>
+                                        <input type="text" placeholder="00000-000">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Número</label>
+                                        <input type="text" placeholder="Digite o número">
+                                    </div>
+                                </div>
+
+                                <!-- RUA -->
+                                <div class="form-group">
+                                    <label>Rua</label>
+                                    <input type="text" placeholder="Digite sua rua">
+                                </div>
+
+                                <!-- COMPLEMENTO -->
+                                <div class="form-group">
+                                    <label>Complemento</label>
+                                    <input type="text" placeholder="Digite o complemento">
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <!-- FAMILIARES -->
+                    <section class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Adicionar Familiares</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="family-summary">
+                                <strong>Total de pessoas:</strong> 1
+                            </div>
+
+                            <div class="add-familiar-form">
+                                <h3 class="form-subtitle">Novo Familiar</h3>
+
+                                <form>
+                                    <div class="form-group">
+                                        <label>Nome Completo</label>
+                                        <input type="text" placeholder="Digite o nome completo">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>CPF</label>
+                                            <input type="text" placeholder="000.000.000-00">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Faixa Etária</label>
+                                            <select>
+                                                <option>Selecione</option>
+                                                <option> 0 a 5 anos</option>
+                                                <option>6 a 13 anos</option>
+                                                <option>14 a 17 anos</option>
+                                                <option>18 a 30 anos</option>
+                                                <option value="31-49">31 a 49 anos</option>
+                                                <option value="50+">Mais de 50 anos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-add">
+                                        Adicionar Familiar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- DIREITA -->
+                <div>
+                    <section class="card sticky">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                Escolha do Abrigo
+                            </h2>
+                            <div class="form-group">
+                                <label>Ordenar por</label>
+                                <select>
+                                    <option>Mais Próximo</option>
+                                    <option>Mais Vagas</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="info-alert">Você precisa de <strong>1 vaga</strong> para sua família.
+                            </div>
+                            <div class="shelters-list">
+
+                                <!-- CARDS -->
+                                <div class="shelter-card">
+                                    <div class="shelter-header">
+                                        <div class="shelter-name">
+                                            Escola Municipal Recife
+                                        </div>
+
+                                        <div class="shelter-badge available">
+                                            Disponível
+                                        </div>
+                                    </div>
+
+                                    <p>58 vagas disponíveis</p>
+                                    <p>2.8 km de distância</p>
+                                </div>
+
+                                <div class="shelter-card">
+                                    <div class="shelter-header">
+                                        <div class="shelter-name">
+                                            Ginásio Comunitário Boa Vista
+                                        </div>
+
+                                        <div class="shelter-badge limited">
+                                            Poucas vagas
+                                        </div>
+                                    </div>
+
+                                    <p>12 vagas disponíveis</p>
+                                    <p>1.5 km de distância</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-confirm">
+                                Confirmar Cadastro
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Rodapé -->
     <footer>
-        &copy; 2026 Página ilustrativa - Sistema Gov.br
+        &copy; 2026 Sistema de Apoio e Abrigos - Prefeitura do Recife
+        <p style="color: #6b7280; font-size: 14px;"> Em caso de emergência, ligue 199 (Defesa Civil) ou 193 (Bombeiros)</p>
     </footer>
 
 </body>
-
 </html>

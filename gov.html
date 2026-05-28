@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acesso Gov.br</title>
-    <link rel="stylesheet" href="css/senha.css"/>
+    <link rel="stylesheet" href="CSS/gov.css"/>
     <link rel="icon" type="image/png" sizes="48x48" href="./Imagem/icon.gov.png">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 
 <body>
@@ -22,34 +23,26 @@
 
         <!-- Imagem -->
         <div class="imagem">
-            <img src="https://sso.acesso.gov.br/assets/govbr/img/senha.png" alt="Imagem Gov.br">
+            <img src="https://sso.acesso.gov.br/assets/govbr/img/conta_govbr_v2.jpg" alt="Imagem Gov.br">
         </div>
 
         <!-- Login -->
         <div class="card">
 
-            <h2>Digite sua senha</h2>
+            <h2>Identifique-se</h2>
 
-            <label>CPF</label>
-
-            <h4>XXX.XXX.XXX-XX</h4>
+            <p>Digite seu CPF para acessar ou criar sua conta gov.br</p>
 
             <form>
 
-                <label for="senha">Senha</label>
+                <label for="cpf">CPF</label>
 
-                <input type="password"
-                    id="senha"
-                    placeholder="Digite sua senha"
+                <input type="text"
+                    id="cpf"
+                    placeholder="Digite seu CPF"
                     aria-invalid="false">
 
-                <button href="index.html" type="submit">Cancelar</button>
-
-                <button type="submit">Entrar</button>
-
-                <div class="esqueci">
-                    <a href="#">Esqueci minha senha</a>
-                </div>
+                <button href="senha.html" type="submit">Continuar</button>
 
             </form>
 
@@ -61,5 +54,7 @@
     <footer>
         &copy; 2026 Página ilustrativa - Sistema Gov.br
     </footer>
+
 </body>
+
 </html>

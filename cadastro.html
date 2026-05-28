@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Sistema de Apoio e Abrigos</title>
     <link rel="stylesheet" href="CSS/cadastro.css"/>
+
 </head>
 
 <body>
@@ -17,7 +18,7 @@
                     <span>Sistema de Abrigos - Recife</span>
                 </div>
 
-                <button class="btn-back">Voltar</button>
+                <button class="btn-back" onclick="goToHome()">Voltar</button>
             </div>
         </div>
     </header>
@@ -146,7 +147,7 @@
 
                         <div class="card-body">
                             <div class="family-summary">
-                                <strong>Total de pessoas:</strong> 1
+                                <strong>Total de pessoas:</strong>
                             </div>
 
                             <div class="add-familiar-form">
@@ -257,3 +258,154 @@
 
 </body>
 </html>
+
+<script>
+/* =========================
+   ESTADO GLOBAL
+========================= */
+let familiares = [];
+
+let shelters = [
+    { nome: "Escola Municipal Recife", vagas: 58, distancia: 2.8, status: "available" },
+    { nome: "Ginásio Comunitário Boa Vista", vagas: 12, distancia: 1.5, status: "limited" }
+];
+
+let ordenacaoAtual = "proximidade";
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarContador();
+    setupFamiliarForm();
+    setupOrdenacao();
+    setupShelterSelection();
+    setupConfirm();
+    renderShelters();
+});
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+function goToHome() {
+    window.location.href = "index.html";
+}
+
+/* =========================
+   FAMILIARES
+========================= */
+function setupFamiliarForm() {
+    const form = document.querySelector(".add-familiar-form form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const inputs = form.querySelectorAll("input");
+        const select = form.querySelector("select");
+
+        const nome = inputs[0].value.trim();
+        const cpf = inputs[1].value.trim();
+        const faixa = select.value;
+
+        if (!nome || !cpf || faixa === "Selecione") {
+            alert("Preencha todos os campos corretamente.");
+            return;
+        }
+
+        familiares.push({ nome, cpf, faixa });
+
+        form.reset();
+        atualizarContador();
+    });
+}
+
+function atualizarContador() {
+    const el = document.querySelector(".family-summary strong");
+    if (!el) return;
+
+    el.textContent = `Total de pessoas: ${familiares.length + 1}`;
+}
+
+/* =========================
+   ABRIGOS
+========================= */
+function renderShelters() {
+    const container = document.querySelector(".shelters-list");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    let lista = [...shelters];
+
+    if (ordenacaoAtual === "proximidade") {
+        lista.sort((a, b) => a.distancia - b.distancia);
+    } else {
+        lista.sort((a, b) => b.vagas - a.vagas);
+    }
+
+    lista.forEach(s => {
+        const card = document.createElement("div");
+        card.className = "shelter-card";
+
+        card.innerHTML = `
+            <div class="shelter-header">
+                <div class="shelter-name">${s.nome}</div>
+                <div class="shelter-badge ${s.status}">
+                    ${s.status === "available" ? "Disponível" : "Poucas vagas"}
+                </div>
+            </div>
+            <p>${s.vagas} vagas disponíveis</p>
+            <p>${s.distancia} km de distância</p>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+/* =========================
+   ORDENAÇÃO
+========================= */
+function setupOrdenacao() {
+    const select = document.querySelector(".card-header select");
+
+    if (!select) return;
+
+    select.addEventListener("change", (e) => {
+        ordenacaoAtual = e.target.value === "Mais Vagas"
+            ? "vagas"
+            : "proximidade";
+
+        renderShelters();
+    });
+}
+
+/* =========================
+   SELEÇÃO DE ABRIGO
+========================= */
+function setupShelterSelection() {
+    document.addEventListener("click", (e) => {
+        const card = e.target.closest(".shelter-card");
+        if (!card) return;
+
+        document.querySelectorAll(".shelter-card")
+            .forEach(c => c.classList.remove("selected"));
+
+        card.classList.add("selected");
+    });
+}
+
+/* =========================
+   CONFIRMAÇÃO
+========================= */
+function setupConfirm() {
+    const btn = document.querySelector(".btn-confirm");
+
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+        const total = familiares.length + 1;
+
+        alert(`Cadastro confirmado com ${total} pessoas.`);
+    });
+}
+</script>

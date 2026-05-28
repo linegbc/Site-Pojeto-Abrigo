@@ -7,7 +7,6 @@
     <title>Acesso Gov.br</title>
     <link rel="stylesheet" href="css/senha.css"/>
     <link rel="icon" type="image/png" sizes="48x48" href="./Imagem/icon.gov.png">
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -30,9 +29,7 @@
 
             <h2>Digite sua senha</h2>
 
-            <label>CPF</label>
-
-            <h4>XXX.XXX.XXX-XX</h4>
+            <label>CPF: <span id="cpfExibido"></span></label>
 
             <form>
 
@@ -43,9 +40,8 @@
                     placeholder="Digite sua senha"
                     aria-invalid="false">
 
-                <button href="index.html" type="submit">Cancelar</button>
-
-                <button type="submit">Entrar</button>
+                <button id="entrar" type="button">Entrar</button>
+                <button id="cancelar" type="button">Cancelar</button>
 
                 <div class="esqueci">
                     <a href="#">Esqueci minha senha</a>
@@ -63,3 +59,41 @@
     </footer>
 </body>
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cpf = localStorage.getItem("cpf_usuario");
+
+    // se não tiver CPF, volta para login
+    if (!cpf) {
+        window.location.href = "gov.html";
+        return;
+    }
+
+    // exibe CPF
+    const cpfEl = document.getElementById("cpfExibido");
+    if (cpfEl) {
+        cpfEl.textContent = cpf;
+    }
+
+    // botão entrar
+    const entrarBtn = document.getElementById("entrar");
+    if (entrarBtn) {
+        entrarBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = "cadastro.html";
+        });
+    }
+
+    // botão cancelar
+    const cancelarBtn = document.getElementById("cancelar");
+    if (cancelarBtn) {
+        cancelarBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = "gov.html";
+        });
+    }
+
+});
+</script>

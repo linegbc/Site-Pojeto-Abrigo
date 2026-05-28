@@ -7,7 +7,6 @@
     <title>Acesso Gov.br</title>
     <link rel="stylesheet" href="CSS/gov.css"/>
     <link rel="icon" type="image/png" sizes="48x48" href="./Imagem/icon.gov.png">
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </head>
 
@@ -33,18 +32,17 @@
 
             <p>Digite seu CPF para acessar ou criar sua conta gov.br</p>
 
-            <form>
+            <form id="loginForm">
 
                 <label for="cpf">CPF</label>
 
                 <input type="text"
                     id="cpf"
-                    placeholder="Digite seu CPF"
-                    aria-invalid="false">
+                    placeholder="Digite seu CPF">
 
-                <button href="senha.html" type="submit">Continuar</button>
+                <button type="submit">Continuar</button>
 
-            </form>
+            </form> 
 
         </div>
 
@@ -58,3 +56,31 @@
 </body>
 
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginForm");
+    const input = document.getElementById("cpf");
+
+    // opcional: preencher se já existir
+    const cpfSalvo = localStorage.getItem("cpf_usuario");
+    if (cpfSalvo) {
+        input.value = cpfSalvo;
+    }
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const cpf = input.value.trim();
+
+        if (!cpf) {
+            alert("Digite o CPF.");
+            return;
+        }
+
+        localStorage.setItem("cpf_usuario", cpf);
+
+        window.location.href = "senha.html";
+    });
+});
+</script>

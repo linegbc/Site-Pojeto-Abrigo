@@ -16,7 +16,7 @@
             <h1>Cadastro de Abrigos e Apoio</h1>
             <p>Sistema de apoio para pessoas afetadas pelas fortes chuvas no Recife.</p>
             <div class="buttons">
-                <button class="cadastro" onclick="goToCadastro()">Realizar Cadastro</button>
+                <button class="cadastro" onclick="goTogov()">Realizar Cadastro</button>
                 <button class="abrigo">Encontrar Abrigo</button>
                 <button class="ajuda">Solicitar Ajuda</button>
             </div>
@@ -232,57 +232,14 @@
 </html>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    initHome();
-});
-
-function initHome() {
+document.addEventListener("DOMContentLoaded", () => {
     setupButtons();
-}
-
-function setupButtons() {
-
-    const cadastroBtn = document.querySelector('.cadastro');
-    const abrigoBtn = document.querySelector('.abrigo');
-    const ajudaBtn = document.querySelector('.ajuda');
-
-    if (abrigoBtn) {
-        abrigoBtn.addEventListener('click', () => {
-            const map = document.getElementById('map');
-            if (map) {
-                map.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    }
-
-    if (ajudaBtn) {
-        ajudaBtn.addEventListener('click', () => {
-            alert(
-                "Emergência:\n\n199 - Defesa Civil\n193 - Bombeiros\n192 - SAMU"
-            );
-        });
-    }
-
-}
-
-// NAVEGAÇÃO ENTRE PÁGINAS
-function goToCadastro() {
-    window.location.href = 'cadastro.html';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    initHome();
     initMap();
 });
 
-function initHome() {
-    setupButtons();
-}
-
-// ==========================
-// BOTÕES
-// ==========================
-
+/* =========================
+   BOTÕES
+========================= */
 function setupButtons() {
 
     const cadastroBtn = document.querySelector('.cadastro');
@@ -290,7 +247,7 @@ function setupButtons() {
     const ajudaBtn = document.querySelector('.ajuda');
 
     if (cadastroBtn) {
-        cadastroBtn.addEventListener('click', goToCadastro);
+        cadastroBtn.addEventListener('click', goTogov);
     }
 
     if (abrigoBtn) {
@@ -306,24 +263,19 @@ function setupButtons() {
     }
 }
 
-// ==========================
-// NAVEGAÇÃO
-// ==========================
-
-function goToCadastro() {
-    window.location.href = 'cadastro.html';
+/* =========================
+   NAVEGAÇÃO
+========================= */
+function goTogov() {
+    window.location.href = "gov.html";
 }
 
-// ==========================
-// MAPA (LEAFLET)
-// ==========================
-
+/* =========================
+   MAPA
+========================= */
 function initMap() {
 
-    if (typeof L === 'undefined') {
-        console.error('Leaflet não foi carregado');
-        return;
-    }
+    if (typeof L === 'undefined') return;
 
     const map = L.map('map').setView([-8.0476, -34.8770], 12);
 
@@ -342,10 +294,8 @@ function initMap() {
             .bindPopup(s.name);
     });
 
-    // marker usuário
     L.circleMarker([-8.0476, -34.8770], {
         radius: 8
     }).addTo(map).bindPopup("Você está aqui");
 }
-
 </script>
